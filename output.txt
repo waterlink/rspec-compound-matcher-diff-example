@@ -1,0 +1,81 @@
+➜  tmp git:(master) ✗ bundle exec rspec x.rb --color                                                                                                                                                                           
+FFFF
+
+Failures:
+
+  1) Combining include and exclude include().and exclude()
+     Failure/Error: expect(multiline_string).to include("    Bar 3").and exclude("    Bar 4")
+       expected "    Foo 1\n    Bar 2\n    Bazz 3\n" to include "    Bar 3"
+       Diff:
+       @@ -1,2 +1,4 @@
+       -    Bar 3
+       +    Foo 1
+       +    Bar 2
+       +    Bazz 3
+       
+     # ./x.rb:13:in `block (2 levels) in <top (required)>'
+
+  2) Combining include and exclude include().or exclude()
+     Failure/Error: expect(multiline_string).to include("    Bar 5").or exclude("    Bazz 3")
+       expected "    Foo 1\n    Bar 2\n    Bazz 3\n" to include "    Bar 5" or expected "    Foo 1\n    Bar 2\n    Bazz 3\n" not to include "    Bazz 3"
+       Diff:
+       @@ -1,2 +1,4 @@
+       -    Bar 5
+       +    Foo 1
+       +    Bar 2
+       +    Bazz 3
+       
+       
+       @@ -1,2 +1,4 @@
+       +    Foo 1
+       +    Bar 2
+            Bazz 3
+       
+     # ./x.rb:17:in `block (2 levels) in <top (required)>'
+
+  3) Combining include and exclude include().or exclude().and include()
+     Failure/Error: expect(multiline_string).to include("    Bar 5").or exclude("    Bazz 3").and include("    Foo 5")
+       expected "    Foo 1\n    Bar 2\n    Bazz 3\n" to include "    Bar 5" or expected "    Foo 1\n    Bar 2\n    Bazz 3\n" not to include "    Bazz 3" and expected "    Foo 1\n    Bar 2\n    Bazz 3\n" to include "    Foo 5"
+       Diff:
+       @@ -1,2 +1,4 @@
+       -    Bar 5
+       +    Foo 1
+       +    Bar 2
+       +    Bazz 3
+       
+       
+       @@ -1,2 +1,4 @@
+       +    Foo 1
+       +    Bar 2
+            Bazz 3
+       
+       
+       @@ -1,2 +1,4 @@
+       -    Foo 5
+       +    Foo 1
+       +    Bar 2
+       +    Bazz 3
+       
+     # ./x.rb:21:in `block (2 levels) in <top (required)>'
+
+  4) Combining include and exclude separate expectations
+     Failure/Error: expect(multiline_string).to include("    Bar 3")
+       expected "    Foo 1\n    Bar 2\n    Bazz 3\n" to include "    Bar 3"
+       Diff:
+       @@ -1,2 +1,4 @@
+       -    Bar 3
+       +    Foo 1
+       +    Bar 2
+       +    Bazz 3
+       
+     # ./x.rb:25:in `block (2 levels) in <top (required)>'
+
+Finished in 0.0033 seconds (files took 0.08557 seconds to load)
+4 examples, 4 failures
+
+Failed examples:
+
+rspec ./x.rb:12 # Combining include and exclude include().and exclude()
+rspec ./x.rb:16 # Combining include and exclude include().or exclude()
+rspec ./x.rb:20 # Combining include and exclude include().or exclude().and include()
+rspec ./x.rb:24 # Combining include and exclude separate expectations
