@@ -25,4 +25,8 @@ RSpec.describe "Combining include and exclude" do
     expect(multiline_string).to include("    Bar 3")
     expect(multiline_string).to exclude("    Bar 4")
   end
+
+  example "bga" do
+    expect("foo").to be_a(Fixnum)
+  end
 end
