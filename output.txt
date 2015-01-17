@@ -1,4 +1,4 @@
-FFFFF
+FFFFFF
 
 Failures:
 
@@ -28,9 +28,10 @@ Failures:
           expected "    Foo 1\n    Bar 2\n    Bazz 3\n" not to include "    Bazz 3"
           Diff:
           @@ -1,2 +1,4 @@
+          --    Bar 5
           +    Foo 1
           +    Bar 2
-               Bazz 3
+          +    Bazz 3
      # ./x.rb:17:in `block (2 levels) in <top (required)>'
 
   3) Combining include and exclude include().or exclude().and include()
@@ -48,16 +49,17 @@ Failures:
              expected "    Foo 1\n    Bar 2\n    Bazz 3\n" not to include "    Bazz 3"
              Diff:
              @@ -1,2 +1,4 @@
+             --    Bar 5
              +    Foo 1
              +    Bar 2
-                  Bazz 3
+             +    Bazz 3
        
           ...and:
        
              expected "    Foo 1\n    Bar 2\n    Bazz 3\n" to include "    Foo 5"
              Diff:
              @@ -1,2 +1,4 @@
-             -    Foo 5
+             ---    Bar 5
              +    Foo 1
              +    Bar 2
              +    Bazz 3
@@ -79,8 +81,13 @@ Failures:
        expected "foo" to be a kind of Fixnum
      # ./x.rb:30:in `block (2 levels) in <top (required)>'
 
-Finished in 0.0076 seconds (files took 0.20164 seconds to load)
-5 examples, 5 failures
+  6) Combining include and exclude singleline compound matcher
+     Failure/Error: expect("foo").to start_with("a").and end_with("z")
+       expected "foo" to start with "a" and expected "foo" to end with "z"
+     # ./x.rb:34:in `block (2 levels) in <top (required)>'
+
+Finished in 0.004 seconds (files took 0.08203 seconds to load)
+6 examples, 6 failures
 
 Failed examples:
 
@@ -89,4 +96,5 @@ rspec ./x.rb:16 # Combining include and exclude include().or exclude()
 rspec ./x.rb:20 # Combining include and exclude include().or exclude().and include()
 rspec ./x.rb:24 # Combining include and exclude separate expectations
 rspec ./x.rb:29 # Combining include and exclude bga
+rspec ./x.rb:33 # Combining include and exclude singleline compound matcher
 

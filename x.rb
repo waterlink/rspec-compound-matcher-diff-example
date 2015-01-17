@@ -29,4 +29,8 @@ RSpec.describe "Combining include and exclude" do
   example "bga" do
     expect("foo").to be_a(Fixnum)
   end
+
+  example "singleline compound matcher" do
+    expect("foo").to start_with("a").and end_with("z")
+  end
 end
